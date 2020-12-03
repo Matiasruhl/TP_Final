@@ -10,13 +10,33 @@ namespace DeepSpace
 		
 		public String Consulta1( ArbolGeneral<Planeta> arbol)
 		{
+			
+			
 			return "Implementar";
 		}
 
 
 		public String Consulta2( ArbolGeneral<Planeta> arbol)
 		{
-			return "Implementar";
+			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>() ; 
+			cola.encolar(arbol) ; 
+			int lv = 0 ; 
+			string ms = "" ; 
+			while(!cola.esVacia()) {
+				int elem = cola.cantElementos ; 
+				lv++ ;
+				int cantidadNivel = 0 ; 
+				int poblacionPorLv = 0 ; 
+				while (elem-- > 0 ) {
+					Cola<ArbolGeneral<Planeta> nodoActual = cola.desencolar() ; 
+					
+					if ( nodoActual.getDatoRaiz().Poblacion() > 10 ) {
+							
+					}
+				}
+				
+			}
+			
 		}
 
 
@@ -27,7 +47,7 @@ namespace DeepSpace
 			int lv = 0 ; 
 			string ms = "" ; 
 			while(!cola.esVacia()) {
-				int elem = planeta.cantElementos ; 
+				int elem = cola.cantElementos ; 
 				lv++ ;
 				int cantNivel = 0 ; 
 				int poblacionPorLv = 0 ; 
