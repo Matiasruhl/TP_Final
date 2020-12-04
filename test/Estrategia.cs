@@ -25,18 +25,21 @@ namespace DeepSpace
 			while(!cola.esVacia()) {
 				int elem = cola.cantElementos ; 
 				lv++ ;
-				int cantidadNivel = 0 ; 
+				int cantidad = 0 ; 
 				int poblacionPorLv = 0 ; 
 				while (elem-- > 0 ) {
 					Cola<ArbolGeneral<Planeta> nodoActual = cola.desencolar() ; 
 					
 					if ( nodoActual.getDatoRaiz().Poblacion() > 10 ) {
-							
+						cantidad++ ;
+					}
+					foreach ( <ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ) {
+						cola.encolar(nodoHijo) ; 
 					}
 				}
-				
+				ms += "Nivel " + lv + ": " + cantidad + " ." ;
 			}
-			
+			return ms ; 
 		}
 
 
