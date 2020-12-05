@@ -33,7 +33,7 @@ namespace DeepSpace
 					if ( nodoActual.getDatoRaiz().Poblacion() > 10 ) {
 						cantidad++ ;
 					}
-					foreach ( <ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ) {
+					foreach ( ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ) {
 						cola.encolar(nodoHijo) ; 
 					}
 				}
