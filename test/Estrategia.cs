@@ -19,8 +19,9 @@ namespace DeepSpace
 			while ( !cola.esVacia() ) {
 				Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
 				
-				if ( n )
-						
+				if ( nodoActual = nodoCercanoAlBot ) {
+					distancia++ ; 
+				}	
 					
 			}
 			ms += "La distancia entre la raiz del arbol y del nodo " + nodoCercanoAlBot + "es de :" + distancia ; 
