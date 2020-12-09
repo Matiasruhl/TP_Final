@@ -8,9 +8,10 @@ namespace DeepSpace
 	{
 		
 		
-		public String Consulta1( ArbolGeneral<Planeta> arbol , int nodoCercanoAlBot )
+		public String Consulta1( ArbolGeneral<Planeta> arbol , ArbolGeneral<Planeta> nodoCercanoAlBot )
 		{
 			arbol.getDatoRaiz().EsPlanetaDeLaIA() ;
+			nodoCercanoAlBot.
 			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>() ;
 			cola.encolar(Arbol) ;
 			string ms = "" ;
@@ -19,12 +20,12 @@ namespace DeepSpace
 			while ( !cola.esVacia() ) {
 				Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
 				
-				if ( nodoActual = nodoCercanoAlBot ) {
+				if ( nodoActual =  ) {
 					distancia++ ; 
 				}	
 					
 			}
-			ms += "La distancia entre la raiz del arbol y del nodo " + nodoCercanoAlBot + "es de :" + distancia ; 
+			ms += "La distancia entre la raiz del arbol y del nodo " + //NodoCercanoAlBot + "es de : " + distancia ; 
 			return ms ; 
 		}
 
