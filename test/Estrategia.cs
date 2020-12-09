@@ -14,19 +14,24 @@ namespace DeepSpace
 			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>() ;
 			cola.encolar(arbol) ;
 			string ms = "" ;
+			int nivel = 0 ; 
 			int distancia = 0 ;
 			 
 			while ( !cola.esVacia() ) {
-				Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
-				
-				if ( nodoActual.getDatoRaiz() = nodoCercanoAlBot.getDatoRaiz() ) {
-					distancia++ ; 
-				}	
-				foreach ( ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ){
-					cola.encolar(nodoHijo) ; 
-				}
+				int elementos = cola.cantElementos() ; 
+				nivel++ ;
+				while ( elementos-- > 0 ) {
+					Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
+					
+					if ( nodoActual.getDatoRaiz() = nodoCercanoAlBot.getDatoRaiz() ) {
+						distancia++ ;
+					}
+					foreach ( ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ) {
+						cola.encolar(nodoHijo) ;
+					}	
+				}ms += "La distancia entre la raiz del arbol y del nodo mas cercano al BOT " + "es de : " + distancia ; 	
 			}
-			ms += "La distancia entre la raiz del arbol y del nodo mas cercano al BOT " + "es de : " + distancia ; 
+			
 			return ms ; 
 		}
 
@@ -38,7 +43,7 @@ namespace DeepSpace
 			int lv = 0 ; 
 			string ms = "" ; 
 			while(!cola.esVacia()) {
-				int elem = cola.cantElementos ; 
+				int elem = cola.cantElementos() ; 
 				lv++ ;
 				int cantidad = 0 ; 
 				int poblacionPorLv = 0 ; 
