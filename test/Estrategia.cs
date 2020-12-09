@@ -10,22 +10,23 @@ namespace DeepSpace
 		
 		public String Consulta1( ArbolGeneral<Planeta> arbol , ArbolGeneral<Planeta> nodoCercanoAlBot )
 		{
-			arbol.getDatoRaiz().EsPlanetaDeLaIA() ;
-			nodoCercanoAlBot.
+			arbol.agregarHijo(nodoCercanoAlBot) ; 
 			Cola<ArbolGeneral<Planeta>> cola = new Cola<ArbolGeneral<Planeta>>() ;
-			cola.encolar(Arbol) ;
+			cola.encolar(arbol) ;
 			string ms = "" ;
 			int distancia = 0 ;
-			//recorrido por niveles 
+			 
 			while ( !cola.esVacia() ) {
 				Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
 				
-				if ( nodoActual =  ) {
+				if ( nodoActual.getDatoRaiz() = nodoCercanoAlBot.getDatoRaiz() ) {
 					distancia++ ; 
 				}	
-					
+				foreach ( ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ){
+					cola.encolar(nodoHijo) ; 
+				}
 			}
-			ms += "La distancia entre la raiz del arbol y del nodo " + //NodoCercanoAlBot + "es de : " + distancia ; 
+			ms += "La distancia entre la raiz del arbol y del nodo mas cercano al BOT " + "es de : " + distancia ; 
 			return ms ; 
 		}
 
@@ -69,7 +70,7 @@ namespace DeepSpace
 				int cantNivel = 0 ; 
 				int poblacionPorLv = 0 ; 
 				while (elem-- > 0 ) {
-					Cola<ArbolGeneral<Planeta> nodoActual = cola.desencolar() ; 
+					Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
 					cantNivel++ ; 
 					poblacionPorLv += nodoActual.getDatoRaiz().Poblacion(); 
 					
