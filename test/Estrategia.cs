@@ -23,13 +23,14 @@ namespace DeepSpace
 				while ( elementos-- > 0 ) {
 					Cola<ArbolGeneral<Planeta>> nodoActual = cola.desencolar() ; 
 					
-					if ( nodoActual.getDatoRaiz() = nodoCercanoAlBot.getDatoRaiz() ) {
+					if ( nodoActual.esPlanetaDeLaIA = FALSE ) {
 						distancia++ ;
 					}
-					foreach ( ArbolGeneral<Planeta> nodoHijo in nodoActual.getHijos() ) {
-						cola.encolar(nodoHijo) ;
+					if ( nodoActual.esPlanetaDeLaIA = TRUE ) {
+						cola.encolar(nodoActual) ;
 					}	
-				}ms += "La distancia entre la raiz del arbol y del nodo mas cercano al BOT " + "es de : " + distancia ; 	
+				}
+				ms += "La distancia entre la raiz del arbol y del nodo mas cercano al BOT " + "es de : " + distancia ; 	
 			}
 			
 			return ms ; 
@@ -90,9 +91,9 @@ namespace DeepSpace
 		
 		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
 		{
-			//Implementar
 			
-			return null;
+			
+			
 		}
 	}
 }
