@@ -88,8 +88,33 @@ namespace DeepSpace
 		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
 		{
 			
-			
-			
+			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
+				//armamos un camino
+				List<Planeta> planetas = new List<Planeta>()  ;
+				Movimiento caminoAI = new Movimiento( arbol , planetas ) ; 
+				
+				for ( int i = 0 ; i < planetas.Count ; i++ ) {
+					if ( !planetas[i].EsPlanetaDelJugador() ){
+						Planeta destino = planetas[i] ;
+						Planeta origen = planetas[i-1] ; 
+						Movimiento nuevoMov = new Movimiento( origen , destino ) ; 
+						return nuevoMov ; 
+					}
+				}
+				return null ; 		
+			}
+			else {
+				//armamos un camino
+				List<Planeta> planetas = new List<Planeta>()  ;
+				Movimiento caminoAI = new Movimiento( arbol , planetas ) ; 
+				int posicionActual = planetas.Count -1 ; 
+				
+				Planeta origen = planetas[posicionActual - 1 ] ; 
+				Planeta destino = planetas[posicionActual] ;
+				Movimiento nuevCamino = new Movimiento(origen ,destino) ; 
+				
+				return nuevCamino ; 
+			}
 		}
 	}
 }
