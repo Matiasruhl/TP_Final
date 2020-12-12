@@ -87,36 +87,43 @@ namespace DeepSpace
 		
 		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
 		{
-						
-			
-			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() ) {
+					if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() ) {
 				
-				List<Planeta> r = new List<Planeta>() ; 
-				Movimiento irUsuario = new Movimiento( arbol , r ) ; 
-				r = irUsuario ( arbol , r ) ; 
+				//armamos un camino hacia un nodo de la IA
 				
-				for ( int i = 0 ; i < r.Count ; i++ ) {
+				List<Planeta> ListaPLanetas = new List<Planeta>() ;
+				Movimiento caminoAI  ;
+				Movimiento caminoJugador  ;
+				// comenzamos en la raiz del arbol
+				
+				caminoAI.origen = arbol.getDatoRaiz() ;
+				caminoJugador.origen = arbol.getDatoRaiz() ;
+				
+				for ( int i = 0 ; i < ListaPLanetas.Count ; i++ ) {
 					
-					Planeta o2 = r[i - 1] ; 
-					Planeta d2 = r[i] ; 
-					Movimiento m2 = new Movimiento(o2 , d2) ; 
-					return m2 ; 
+					if ( ListaPLanetas[i].EsPlanetaDeLaIA() == true) {
+						caminoAI.destino = ListaPLanetas[i] ;
+						return caminoAI ;
+					}
+					if (  ListaPLanetas[i].EsPlanetaDelJugador()  == true ) {
+						caminoJugador.destino = ListaPLanetas[i] ;
+						return caminoJugador ;
+					}
 					
 				}
-			}
-			else {
+				return null ;
 				
-				List<Planeta> r = new List<Planeta>() ; 
-				Movimiento irBot = new Movimiento (arbol , r) ; 
-				r = irBot(arbol,r) ; 
-				int pos = r.Count - 1 ; 
 				
-				Planeta origen = r[pos] ; 
-				Planeta destino = r[pos-1] ; 
-				Movimiento mover = new Movimiento( origen , destino  ) ; 
-				return mover ; 
+			}else {
+				
+				// si la raiz es planeta de la IA
+				
+				Movimiento caminoAI  ;
+				caminoAI.origen = arbol.getDatoRaiz() ;
+				caminoAI.destino = arbol.getDatoRaiz() ;
+				
+				return caminoAI ;
 			}
-			
 		}
 	}
 }
