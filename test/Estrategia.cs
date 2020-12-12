@@ -89,25 +89,36 @@ namespace DeepSpace
 		{
 			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
 				
-			//armamos un camino hacia un nodo de la IA
+				//armamos un camino hacia un nodo de la IA
 				
-			List<Planeta> planetas = new List<Planeta>()  ;
+				List<Planeta> ListaPLanetas = new List<Planeta>() ;
+				Movimiento caminoAI  ;
+				Movimiento caminoJugador  ;
+				// comenzamos en la raiz del arbol
 				
-			Movimiento caminoAI  ;
+				caminoAI.origen = arbol.getDatoRaiz() ;
+				caminoJugador.origen = arbol.getDatoRaiz() ;
 				
-			// comenzamos en la raiz del arbol
-				
-			caminoAI.origen = arbol.getDatoRaiz() ;
-			int posicion = 0 ;
-			while ( planetas[posicion].EsPlanetaDeLaIA() == false ) {
-				posicion++;
+				for ( int i = 0 ; i < ListaPLanetas.Count ; i++ ) {
 					
-			}
-			if ( planetas[posicion].EsPlanetaDeLaIA() == true ){
-				caminoAI.destino = planetas[posicion] ;
+					if ( ListaPLanetas[i].EsPlanetaDeLaIA() == true) {
+						caminoAI.destino = ListaPLanetas[i] ;
+						return caminoAI ; 
+					}
+					if (  ListaPLanetas[i].EsPlanetaDelJugador()  == true ) {
+						caminoJugador.destino = ListaPLanetas[i] ;
+						return caminoJugador ; 
+					}
+					
+				}
+				
+				
+			}else {
+				Movimiento caminoAI  ;
+				caminoAI.origen = arbol.getDatoRaiz() ; 
+				caminoAI.destino = arbol.getDatoRaiz() ; 
 				return caminoAI ; 
 			}
-			return null ;
 		}
 	}
 }
