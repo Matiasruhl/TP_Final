@@ -87,11 +87,12 @@ namespace DeepSpace
 		
 		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
 		{
-					if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() ) {
+			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
 				
 				//armamos un camino hacia un nodo de la IA
 				
 				List<Planeta> ListaPLanetas = new List<Planeta>() ;
+				ListaPLanetas.Add(arbol.getDatoRaiz());
 				Movimiento caminoAI  ;
 				Movimiento caminoJugador  ;
 				// comenzamos en la raiz del arbol
@@ -105,10 +106,14 @@ namespace DeepSpace
 						caminoAI.destino = ListaPLanetas[i] ;
 						return caminoAI ;
 					}
-					if (  ListaPLanetas[i].EsPlanetaDelJugador()  == true ) {
-						caminoJugador.destino = ListaPLanetas[i] ;
+				}
+				for ( int p = 0 ; p < ListaPLanetas.Count ; p++ ){
+					
+					if (  ListaPLanetas[p].EsPlanetaDelJugador()  == true ) {
+						caminoJugador.destino = ListaPLanetas[p] ;
 						return caminoJugador ;
 					}
+					
 					
 				}
 				return null ;
@@ -118,11 +123,11 @@ namespace DeepSpace
 				
 				// si la raiz es planeta de la IA
 				
-				Movimiento caminoAI  ;
-				caminoAI.origen = arbol.getDatoRaiz() ;
-				caminoAI.destino = arbol.getDatoRaiz() ;
+				Movimiento caminoHaciaAI  ;
+				caminoHaciaAI.origen = arbol.getDatoRaiz() ;
+				caminoHaciaAI.destino = arbol.getDatoRaiz() ;
 				
-				return caminoAI ;
+				return caminoHaciaAI ;
 			}
 		}
 	}
