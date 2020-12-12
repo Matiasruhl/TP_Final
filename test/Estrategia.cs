@@ -87,6 +87,7 @@ namespace DeepSpace
 		
 		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
 		{
+						
 			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
 				
 				//armamos un camino hacia un nodo de la IA
@@ -111,13 +112,17 @@ namespace DeepSpace
 					}
 					
 				}
+				return null ;
 				
 				
 			}else {
+				// si la raiz es planeta de la IA
+				
 				Movimiento caminoAI  ;
 				caminoAI.origen = arbol.getDatoRaiz() ; 
 				caminoAI.destino = arbol.getDatoRaiz() ; 
-				return caminoAI ; 
+				
+				return caminoAI ;
 			}
 		}
 	}
