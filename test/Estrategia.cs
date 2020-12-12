@@ -84,38 +84,42 @@ namespace DeepSpace
 			}
 			return ms ;
 		}
-		
-		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
+
+				public Movimiento CalcularMovimiento (ArbolGeneral<Planeta> arbol)
 		{
 			//debemos encontrar el nodo q pertenece al BOT
 			
 			List<Planeta> listaPlanetas = new List<Planeta>() ;
 			
 			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
+				
 				List<Planeta> caminoHaciaIA = BusquedaIA(arbol,listaPlanetas) ;
 				
 				Movimiento movHaciaIA ;
 				
 				for ( int i = 0 ; i < caminoHaciaIA.Count ; i++ ){
 					
-					movHaciaIA.origen = caminoHaciaIA[i] ;
-					movHaciaIA.destino = caminoHaciaIA[i-1] ;
+					movHaciaIA.origen = caminoHaciaIA[i-1] ;
+					movHaciaIA.destino = caminoHaciaIA[i] ;
 					
 				}
 				return movHaciaIA ;
 			}
 			else {
+				
 				List<Planeta> caminoHaciaJugador = AtaqueJugador(arbol,listaPlanetas) ;
 				Movimiento movHaciaJugador ; 
 				
 				for ( int i = 0 ; i < caminoHaciaJugador.Count ; i++ ){
 					
-					movHaciaJugador.origen = caminoHaciaJugador[i] ;
-					movHaciaJugador.destino = caminoHaciaJugador[i-1] ;
+					movHaciaJugador.origen = caminoHaciaJugador[i-1] ;
+					movHaciaJugador.destino = caminoHaciaJugador[i] ;
 					
 				}
 				return movHaciaJugador ; 
 			}
+			
+			
 			
 		}
 		//Con este metodo armamos un camino hacia algun nodo de la IA
@@ -162,5 +166,3 @@ namespace DeepSpace
 		}
 	}
 }
-	
-
