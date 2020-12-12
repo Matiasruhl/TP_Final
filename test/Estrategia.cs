@@ -87,8 +87,8 @@ namespace DeepSpace
 				
 				for ( int i = 0 ; i < caminoHaciaIA.Count ; i++ ){
 					
-					movHaciaIA.origen = caminoHaciaIA[i] ;
-					movHaciaIA.destino = caminoHaciaIA[i-1] ;
+					movHaciaIA.origen = caminoHaciaIA[i-1] ;
+					movHaciaIA.destino = caminoHaciaIA[i] ;
 					
 				}
 				return movHaciaIA ;
