@@ -87,47 +87,40 @@ namespace DeepSpace
 		
 		public Movimiento CalcularMovimiento(ArbolGeneral<Planeta> arbol)
 		{
-			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
+			//debemos encontrar el nodo q pertenece al BOT
+			
+			List<Planeta> listaPlanetas = new List<Planeta>() ;
+			
+			List<Planeta> caminoHaciaIA = PreOrden(arbol,listaPlanetas) ;
+			
+			Movimiento movHaciaIA ; 
+			
+			for ( int i = 0 ; i < caminoHaciaIA.Count ; i++  ){
 				
-				//armamos un camino hacia un nodo de la IA
+				movHaciaIA.origen = caminoHaciaIA[i] ; 
+				movHaciaIA.destino = caminoHaciaIA[i-1] ;
 				
-				List<Planeta> ListaPLanetas = new List<Planeta>() ;
-				ListaPLanetas.Add(arbol.getDatoRaiz());
-				Movimiento caminoAI  ;
-				Movimiento caminoJugador  ;
-				// comenzamos en la raiz del arbol
-				
-				caminoAI.origen = arbol.getDatoRaiz() ;
-				caminoJugador.origen = arbol.getDatoRaiz() ;
-				
-				for ( int i = 0 ; i < ListaPLanetas.Count ; i++ ) {
-					
-					if ( ListaPLanetas[i].EsPlanetaDeLaIA() == true) {
-						caminoAI.destino = ListaPLanetas[i] ;
-						return caminoAI ;
-					}
+			}
+			return movHaciaIA ; 
+		}
+		public List<Planeta> PreOrden ( ArbolGeneral<Planeta> arbol , List<Planeta> lista ) {
+			
+			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == true  ) {
+				return lista ;
+			}
+			else{
+				lista.Add( arbol.getDatoRaiz() ) ;
+				foreach ( ArbolGeneral<Planeta> planetaActual in arbol.getHijos() ) {
+					PreOrden(planetaActual , lista) ;
+					return null ;
 				}
-				for ( int p = 0 ; p < ListaPLanetas.Count ; p++ ){
-					
-					if (  ListaPLanetas[p].EsPlanetaDelJugador()  == true ) {
-						caminoJugador.destino = ListaPLanetas[p] ;
-						return caminoJugador ;
-					}
-					
-					
+				//saco el ultimo elemento si no es de la IA
+				
+				if( lista[lista.Count - 1].EsPlanetaDeLaIA() == false ) {
+					lista.RemoveAt(lista.Count - 1) ;
+					return null ;
 				}
-				return null ;
 				
-				
-			}else {
-				
-				// si la raiz es planeta de la IA
-				
-				Movimiento caminoHaciaAI  ;
-				caminoHaciaAI.origen = arbol.getDatoRaiz() ;
-				caminoHaciaAI.destino = arbol.getDatoRaiz() ;
-				
-				return caminoHaciaAI ;
 			}
 		}
 	}
