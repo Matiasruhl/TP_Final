@@ -73,7 +73,7 @@ namespace DeepSpace
 			return ms ;
 		}
 
-				public Movimiento CalcularMovimiento (ArbolGeneral<Planeta> arbol)
+		public Movimiento CalcularMovimiento (ArbolGeneral<Planeta> arbol)
 		{
 			//debemos encontrar el nodo q pertenece al BOT
 			
@@ -87,8 +87,8 @@ namespace DeepSpace
 				
 				for ( int i = 0 ; i < caminoHaciaIA.Count ; i++ ){
 					
-					movHaciaIA.origen = caminoHaciaIA[i-1] ;
-					movHaciaIA.destino = caminoHaciaIA[i] ;
+					movHaciaIA.origen = caminoHaciaIA[i] ;
+					movHaciaIA.destino = caminoHaciaIA[i-1] ;
 					
 				}
 				return movHaciaIA ;
@@ -100,7 +100,7 @@ namespace DeepSpace
 				
 				for ( int i = 0 ; i < caminoHaciaJugador.Count ; i++ ){
 					
-					movHaciaJugador.origen = caminoHaciaJugador[i-1] ;
+					movHaciaJugador.origen = arbol.getDatoRaiz() ;
 					movHaciaJugador.destino = caminoHaciaJugador[i] ;
 					
 				}
@@ -131,6 +131,7 @@ namespace DeepSpace
 				
 			} 
 		}
+		//Recorrido desde la raiz al Jugador
 		public List<Planeta> AtaqueJugador ( ArbolGeneral<Planeta> arbol , List<Planeta> lista ) {
 			
 			if ( arbol.getDatoRaiz().EsPlanetaDelJugador() == true  ) {
