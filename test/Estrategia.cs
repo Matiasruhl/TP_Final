@@ -91,19 +91,35 @@ namespace DeepSpace
 			
 			List<Planeta> listaPlanetas = new List<Planeta>() ;
 			
-			List<Planeta> caminoHaciaIA = PreOrden(arbol,listaPlanetas) ;
-			
-			Movimiento movHaciaIA ; 
-			
-			for ( int i = 0 ; i < caminoHaciaIA.Count ; i++  ){
+			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == false ) {
+				List<Planeta> caminoHaciaIA = BusquedaIA(arbol,listaPlanetas) ;
 				
-				movHaciaIA.origen = caminoHaciaIA[i] ; 
-				movHaciaIA.destino = caminoHaciaIA[i-1] ;
+				Movimiento movHaciaIA ;
 				
+				for ( int i = 0 ; i < caminoHaciaIA.Count ; i++ ){
+					
+					movHaciaIA.origen = caminoHaciaIA[i] ;
+					movHaciaIA.destino = caminoHaciaIA[i-1] ;
+					
+				}
+				return movHaciaIA ;
 			}
-			return movHaciaIA ; 
+			else {
+				List<Planeta> caminoHaciaJugador = AtaqueJugador(arbol,listaPlanetas) ;
+				Movimiento movHaciaJugador ; 
+				
+				for ( int i = 0 ; i < caminoHaciaJugador.Count ; i++ ){
+					
+					movHaciaJugador.origen = caminoHaciaJugador[i] ;
+					movHaciaJugador.destino = caminoHaciaJugador[i-1] ;
+					
+				}
+				return movHaciaJugador ; 
+			}
+			
 		}
-		public List<Planeta> PreOrden ( ArbolGeneral<Planeta> arbol , List<Planeta> lista ) {
+		//Con este metodo armamos un camino hacia algun nodo de la IA
+		public List<Planeta> BusquedaIA ( ArbolGeneral<Planeta> arbol , List<Planeta> lista ) {
 			
 			if ( arbol.getDatoRaiz().EsPlanetaDeLaIA() == true  ) {
 				return lista ;
@@ -111,7 +127,7 @@ namespace DeepSpace
 			else{
 				lista.Add( arbol.getDatoRaiz() ) ;
 				foreach ( ArbolGeneral<Planeta> planetaActual in arbol.getHijos() ) {
-					PreOrden(planetaActual , lista) ;
+					BusquedaIA(planetaActual , lista) ;
 					return null ;
 				}
 				//saco el ultimo elemento si no es de la IA
@@ -121,7 +137,30 @@ namespace DeepSpace
 					return null ;
 				}
 				
+			} 
+		}
+		public List<Planeta> AtaqueJugador ( ArbolGeneral<Planeta> arbol , List<Planeta> lista ) {
+			
+			if ( arbol.getDatoRaiz().EsPlanetaDelJugador() == true  ) {
+				return lista ;
 			}
+			else{
+				lista.Add( arbol.getDatoRaiz() ) ;
+				foreach ( ArbolGeneral<Planeta> planetaActual in arbol.getHijos() ) {
+					BusquedaIA(planetaActual , lista) ;
+					return null ;
+				}
+				//saco el ultimo elemento si no es de la IA
+				
+				if( lista[lista.Count - 1].EsPlanetaDelJugador() == false ) {
+					lista.RemoveAt(lista.Count - 1) ;
+					return null ;
+				}
+				
+			}
+			
 		}
 	}
 }
+	
+
